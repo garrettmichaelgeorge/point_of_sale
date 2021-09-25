@@ -1,6 +1,8 @@
 defmodule POS.BarcodeTest do
   use ExUnit.Case, async: true
 
+  import ExUnit.CaptureIO
+
   alias POS.Barcode
 
   test "has a value" do
@@ -15,5 +17,10 @@ defmodule POS.BarcodeTest do
   test "rejects non-string input in constructor" do
     assert_raise FunctionClauseError, fn -> Barcode.new(123) end
     assert_raise FunctionClauseError, fn -> Barcode.new(["123", "99999"]) end
+  end
+
+  test "prints as its value" do
+    barcode = Barcode.new("123")
+    assert capture_io(fn -> IO.write(barcode) end) == "123"
   end
 end
