@@ -12,6 +12,11 @@ defmodule POS.MoneyTest do
     assert Money.dollars_only(money) == 1234
   end
 
+  test "gets cents only" do
+    money = %Money{cents_value: 98765}
+    assert Money.cents_only(money) == 65
+  end
+
   # TODO: implement dollars and cents
   # test "format as string" do
   #   money = %Money{cents_value: 9999}
