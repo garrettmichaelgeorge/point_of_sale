@@ -1,21 +1,5 @@
 # POS
 
-**TODO: Add description**
-
-## Installation
-
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `point_of_sale` to your list of dependencies in `mix.exs`:
-
-```elixir
-def deps do
-  [
-    {:point_of_sale, "~> 0.1.0"}
-  ]
-end
-```
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/point_of_sale](https://hexdocs.pm/point_of_sale).
-
+My solution to the [Point of Sale
+exercise](https://online-training.jbrains.ca/courses/wbitdd-01/lectures/136762)
+by J. B. Rainsberger in The World's Best Intro to TDD, Level 1
