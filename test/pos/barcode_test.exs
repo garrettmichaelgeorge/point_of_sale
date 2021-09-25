@@ -23,4 +23,8 @@ defmodule POS.BarcodeTest do
     barcode = Barcode.new("123")
     assert capture_io(fn -> IO.write(barcode) end) == "123"
   end
+
+  test "two barcodes with equal values are equal" do
+    assert Barcode.new("456") == Barcode.new("456")
+  end
 end
