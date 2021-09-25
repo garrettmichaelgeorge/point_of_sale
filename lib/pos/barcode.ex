@@ -5,7 +5,7 @@ defmodule POS.Barcode do
     value: binary()
   }
 
-  def new(value) do
+  def new(value) when is_binary(value) do
     struct!(__MODULE__, value: value)
   end
 end
