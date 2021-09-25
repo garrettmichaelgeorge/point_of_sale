@@ -7,8 +7,14 @@ defmodule POS.MoneyTest do
     assert %Money{cents_value: 123}
   end
 
-  test "format as string" do
-    money = %Money{cents_value: 9999}
-    assert to_string(money)
+  test "gets dollars only" do
+    money = %Money{cents_value: 123456}
+    assert Money.dollars_only(money) == 1234
   end
+
+  # TODO: implement dollars and cents
+  # test "format as string" do
+  #   money = %Money{cents_value: 9999}
+  #   assert to_string(money) == "$99.99"
+  # end
 end
