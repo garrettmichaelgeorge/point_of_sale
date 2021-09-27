@@ -10,7 +10,7 @@ defmodule POS do
       )
       when is_binary(barcode_string) do
     message = "hello!"
-    barcode = Barcode.new("123")
+    barcode = Barcode.new(barcode_string)
 
     product_lookup_fn.(barcode)
 

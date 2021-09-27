@@ -4,6 +4,7 @@ defmodule POSTest do
   import Mox
 
   alias POS.Product
+  alias POS.Barcode
 
   setup :verify_on_exit!
 
@@ -19,17 +20,16 @@ defmodule POSTest do
   end
 
   test "on successful product lookup, sends product data to display" do
+    barcode_string = "456"
     price = "$54.99"
 
     POS.MockProducts
-    |> expect(:get_product_by_barcode, fn _barcode -> %Product{price: price} end)
+    |> expect(:get_product_by_barcode, fn %Barcode{value: ^barcode_string} -> %Product{price: price} end)
 
     POS.MockCrystalfontzClient
     |> expect(:display_message, fn _message, _opts ->
       {:ok, ~S"displayed \"#{message}\" successfully!"}
     end)
-
-    barcode_string = "123"
 
     assert POS.handle_barcode(
              barcode_string,
