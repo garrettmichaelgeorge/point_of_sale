@@ -9,8 +9,11 @@ defmodule POS.CrystalfontzClient do
       Keyword.get(opts, :url, display_url())
       |> String.to_charlist()
 
-    case do_post_message(message, url) do
-      response -> response
+    with {:ok, {{_protocol, status_code, msg} = _resp_type, _headers, _} = response}
+         when status_code in [200, 201] <- do_post_message(message, url) do
+      {:ok, response}
+    else
+      _ -> {:error, ""}
     end
   end
 
