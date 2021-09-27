@@ -6,12 +6,12 @@ defmodule POS.CrystalfontzClient do
   defp display_url, do: @display_url
 
   def post_message(message, opts) do
-    url =
+    url_charlist =
       Keyword.get(opts, :url, display_url())
       |> String.to_charlist()
 
     with {:ok, {{_protocol, status_code, msg} = _resp_type, _headers, _} = response}
-         when status_code in [200, 201] <- do_post_message(message, url) do
+         when status_code in [200, 201] <- do_post_message(message, url_charlist) do
       {:ok, response}
     else
       _ ->
@@ -19,8 +19,8 @@ defmodule POS.CrystalfontzClient do
     end
   end
 
-  defp do_post_message(message, url) do
-    :httpc.request(:post, {url, [], 'application/json', post_body(message)}, [], [])
+  defp do_post_message(message, url_charlist) do
+    :httpc.request(:post, {url_charlist, [], 'application/json', post_body(message)}, [], [])
   end
 
   defp post_body(message) do
