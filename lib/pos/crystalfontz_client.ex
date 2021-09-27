@@ -2,7 +2,8 @@ defmodule POS.CrystalfontzClient do
   @base_url "http://localhost:9393"
   @display_path "/display"
   @display_url @base_url <> @display_path
-  @request_uri URI.parse(@base_url <> @display_path)
+
+  defp display_url, do: @display_url
 
   def post_message(message, opts) do
     url =
@@ -13,7 +14,8 @@ defmodule POS.CrystalfontzClient do
          when status_code in [200, 201] <- do_post_message(message, url) do
       {:ok, response}
     else
-      _ -> {:error, ""}
+      _ ->
+        {:error, ""}
     end
   end
 
@@ -25,9 +27,5 @@ defmodule POS.CrystalfontzClient do
     %{text: message}
     |> Jason.encode!()
     |> String.to_charlist()
-  end
-
-  defp display_url do
-    @display_url
   end
 end
