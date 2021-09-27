@@ -13,6 +13,7 @@ defmodule POS do
     product = product_lookup_fn.(barcode)
     message = product.price
 
-    display_fn.(message, [])
+    result = display_fn.(message, [])
+    {:ok, result}
   end
 end
