@@ -1,10 +1,15 @@
 defmodule POS.CrystalfontzClient do
+  alias POS.CrystalfontzClientBehaviour
+
+  @behaviour CrystalfontzClientBehaviour
+
   @base_url "http://localhost:9393"
   @display_path "/display"
   @display_url @base_url <> @display_path
 
   defp display_url, do: @display_url
 
+  @impl CrystalfontzClientBehaviour
   def display_message(message, opts) do
     url_charlist =
       Keyword.get(opts, :url, display_url())
