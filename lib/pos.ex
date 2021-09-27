@@ -9,13 +9,10 @@ defmodule POS do
         display_fn \\ &CrystalfontzClient.display_message/2
       )
       when is_binary(barcode_string) do
-    message = "hello!"
     barcode = Barcode.new(barcode_string)
-
-    product_lookup_fn.(barcode)
+    product = product_lookup_fn.(barcode)
+    message = product.price
 
     display_fn.(message, [])
-
-    true
   end
 end

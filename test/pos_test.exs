@@ -27,7 +27,7 @@ defmodule POSTest do
     |> expect(:get_product_by_barcode, fn %Barcode{value: ^barcode_string} -> %Product{price: price} end)
 
     POS.MockCrystalfontzClient
-    |> expect(:display_message, fn _message, _opts ->
+    |> expect(:display_message, fn ^price, _opts ->
       {:ok, ~S"displayed \"#{message}\" successfully!"}
     end)
 
