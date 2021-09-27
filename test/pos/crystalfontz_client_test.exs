@@ -17,7 +17,12 @@ defmodule POS.CrystalfontzClientTest do
       assert {:ok, _} = CrystalfontzClient.post_message("foo", url: endpoint_url(bypass.port))
     end
 
-    test "failure: returns error tuple" do
+    test "failure: returns error tuple", %{bypass: bypass} do
+      Bypass.expect_once(bypass, "POST", "/display", fn conn ->
+        Plug.Conn.resp(conn, 500, "")
+      end)
+
+      assert {:error, _} = CrystalfontzClient.post_message("foo", url: endpoint_url(bypass.port))
     end
   end
 

@@ -9,6 +9,12 @@ defmodule POS.CrystalfontzClient do
       Keyword.get(opts, :url, display_url())
       |> String.to_charlist()
 
+    case do_post_message(message, url) do
+      response -> response
+    end
+  end
+
+  defp do_post_message(message, url) do
     :httpc.request(:post, {url, [], 'application/json', post_body(message)}, [], [])
   end
 
