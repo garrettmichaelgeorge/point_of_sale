@@ -14,7 +14,7 @@ defmodule POS.CrystalfontzClientTest do
         Plug.Conn.resp(conn, 200, "")
       end)
 
-      assert {:ok, _} = CrystalfontzClient.post_message("foo", url: endpoint_url(bypass.port))
+      assert {:ok, _} = CrystalfontzClient.display_message("foo", url: endpoint_url(bypass.port))
     end
 
     test "failure: returns error tuple", %{bypass: bypass} do
@@ -22,7 +22,7 @@ defmodule POS.CrystalfontzClientTest do
         Plug.Conn.resp(conn, 500, "")
       end)
 
-      assert {:error, _} = CrystalfontzClient.post_message("foo", url: endpoint_url(bypass.port))
+      assert {:error, _} = CrystalfontzClient.display_message("foo", url: endpoint_url(bypass.port))
     end
   end
 
