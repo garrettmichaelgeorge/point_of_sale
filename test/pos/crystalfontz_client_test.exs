@@ -3,10 +3,8 @@ defmodule POS.CrystalfontzClientTest do
 
   alias POS.CrystalfontzClient
 
-  @crystalfontz_port 9393
-
   setup do
-    bypass = Bypass.open(port: @crystalfontz_port)
+    bypass = Bypass.open()
     {:ok, bypass: bypass}
   end
 
@@ -16,10 +14,12 @@ defmodule POS.CrystalfontzClientTest do
         Plug.Conn.resp(conn, 200, "")
       end)
 
-      assert {:ok, _} = CrystalfontzClient.post_message("foo")
+      assert {:ok, _} = CrystalfontzClient.post_message("foo", url: endpoint_url(bypass.port))
     end
 
     test "failure: returns error tuple" do
     end
   end
+
+  defp endpoint_url(port), do: "http://localhost:#{port}/display"
 end
