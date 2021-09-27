@@ -23,7 +23,8 @@ defmodule POS.MixProject do
   defp deps do
     [
       {:bypass, "~> 2.1", only: :test},
-      {:jason, "~> 1.2"}
+      {:jason, "~> 1.2"},
+      {:mox, "~> 1.0", only: :test}
     ]
   end
 end
